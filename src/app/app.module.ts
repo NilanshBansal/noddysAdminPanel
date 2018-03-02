@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { MomentModule } from 'angular2-moment';
 
 import { AppComponent } from './app.component';
 import { FirebaseService } from '../services/firebase.service';
@@ -24,6 +25,7 @@ export const firebaseConfig = {
   ],
   imports: [
     BrowserModule,
+    MomentModule,
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFirestoreModule,

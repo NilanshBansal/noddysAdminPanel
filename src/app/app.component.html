@@ -1,44 +1,68 @@
 <div class="main-content container">
-    <h2>FB EVENTS</h2>
+    <h2>EVENTSHIGH</h2>
   <div *ngFor="let key of objectKeys(allEvents)" class="row-fluid">
-    
-    <div class="panel panel-default" *ngIf="allEvents[key]['mySource']=='fb'">
+    <div class="panel panel-default" *ngIf="allEvents[key]['mySource']=='eventsHigh'">
       <div class="panel-heading" >
+             {{allEvents[key].myDisplayTitle}}
+              
       </div>
       <div class="panel-body" >
-        <b>Key:</b>{{key}}<br>
-       <b>City: </b> {{allEvents[key]["venue"]["city"]}}<br>
-       <b>Source: </b>{{allEvents[key]['mySource']}}
+        <span *ngIf="allEvents[key].price[0]['value']!='Not Specified'">
+          <b>Price: </b>₹ {{Math.round(allEvents[key].price[0]["value"])}}</span>
+       <b>Date: </b> {{allEvents[key].upcoming_occurrences[0]["date"].split(':')[0] | amParse:'YYYY-MM-DD' | amDateFormat:'LL'}}<br>
+       <b>Starts: </b>{{(allEvents[key].upcoming_occurrences[0]["start_time"]| amParse:'hh:mm:ss' | amCalendar).split("at")[1]}}
+       <b>Ends: </b>{{(allEvents[key].upcoming_occurrences[0]["end_time"]| amParse:'hh:mm:ss' | amCalendar).split("at")[1]}}
+       <b>Venue: </b><span *ngIf="allEvents[key].venue['name']!=''">{{allEvents[key].venue["name"] + ", " }}</span>{{ allEvents[key].venue["city"]}}
+       <span *ngIf="allEvents[key].myLocation!=''">
+        <b>Locality: </b>{{allEvents[key].myLocation}}
+        
+      </span>
       </div>
      
     </div>
     </div>
-    <br><h2>EVENTSHIGH</h2>
+    <br><h2>FB EVENTS</h2>
     <div *ngFor="let key of objectKeys(allEvents)" class="row-fluid">
-    
-    <div class="panel panel-default" *ngIf="allEvents[key]['mySource']=='eventsHigh'">
+      <!-- <div *ngFor="let occurrence of objectKeys(allEvents[key].upcoming_occurrences)"> -->
+    <div class="panel panel-default" *ngIf="allEvents[key]['mySource']=='fb'">
         <div class="panel-heading" >
+            {{allEvents[key]['myDisplayTitle']}}
         </div>
         <div class="panel-body" >
-          <b>Key:</b>{{key}}<br>
-         <b>City: </b> {{allEvents[key]["venue"]["city"]}}<br>
-         <b>Source: </b>{{allEvents[key]['mySource']}}
+          <span *ngIf="allEvents[key].price[0]['value']!='Not Specified'">
+            <b>Price: </b>₹ {{Math.round(allEvents[key].price[0]["value"])}}</span>
+          <b>Date: </b> {{allEvents[key].upcoming_occurrences[0]["date"].split(':')[0] | amParse:'YYYY-MM-DD' | amDateFormat:'LL'}}<br>
+          <b>Starts: </b>{{(allEvents[key].upcoming_occurrences[0]["start_time"]| amParse:'hh:mm:ss' | amCalendar).split("at")[1]}}
+          <b>Ends: </b>{{(allEvents[key].upcoming_occurrences[0]["end_time"]| amParse:'hh:mm:ss' | amCalendar).split("at")[1]}}
+          <b>Venue: </b><span *ngIf="allEvents[key].venue['name']!=''">{{allEvents[key].venue["name"] + ", " }}</span>{{ allEvents[key].venue["city"]}}
+          <span *ngIf="allEvents[key].myLocation!=''">
+           <b>Locality: </b>{{allEvents[key].myLocation}}
+           
+         </span>
         </div>
        
       </div>
+      <!-- </div> -->
       </div>
       <br><h2>NODDYSAPP</h2>
       <div *ngFor="let key of objectKeys(allEvents)" class="row-fluid">
-      
       <div class="panel panel-default" *ngIf="allEvents[key]['mySource']=='noddysApp'">
           <div class="panel-heading" >
+              {{allEvents[key].myDisplayTitle}}
           </div>
           <div class="panel-body" >
-            <b>Key:</b>{{key}}<br>
-           <b>City: </b> {{allEvents[key]["venue"]["city"]}}<br>
-           <b>Source: </b>{{allEvents[key]['mySource']}}
+            <span *ngIf="allEvents[key].price[0]['value']!='Not Specified'">
+              <b>Price: </b>₹ {{Math.round(allEvents[key].price[0]["value"])}}</span>
+            <b>Date: </b> {{allEvents[key].upcoming_occurrences[0]["date"].split(':')[0] | amParse:'YYYY-MM-DD' | amDateFormat:'LL'}}<br>
+            <b>Starts: </b>{{(allEvents[key].upcoming_occurrences[0]["start_time"]| amParse:'hh:mm:ss' | amCalendar).split("at")[1]}}
+            <b>Ends: </b>{{(allEvents[key].upcoming_occurrences[0]["end_time"]| amParse:'hh:mm:ss' | amCalendar).split("at")[1]}}
+            <b>Venue: </b><span *ngIf="allEvents[key].venue['name']!=''">{{allEvents[key].venue["name"] + ", " }}</span>{{ allEvents[key].venue["city"]}}
+            <span *ngIf="allEvents[key].myLocation!=''">
+             <b>Locality: </b>{{allEvents[key].myLocation}}
+             
+           </span>
           </div>
          
         </div>
+        </div>
     </div>
-  </div>
