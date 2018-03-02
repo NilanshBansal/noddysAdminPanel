@@ -1,12 +1,15 @@
 <div class="main-content container">
-    <h2>EVENTSHIGH</h2>
+  <!-- <button class="btn btn-danger" (click)="purgeAll()">Purge All</button> -->
+  
+    <br><h2>EVENTSHIGH</h2>
+    <button class="btn btn-primary" (click)="purge('eventsHigh')">Purge Eventshigh Events</button><br><br>
   <div *ngFor="let key of objectKeys(allEvents)" class="row-fluid">
     <div class="panel panel-default" *ngIf="allEvents[key]['mySource']=='eventsHigh'">
       <div class="panel-heading" >
-             {{allEvents[key].myDisplayTitle}}
-              
+             {{allEvents[key].myDisplayTitle}}   <button class="btn btn-danger pull-right" (click)="purgeEvent(key)"><span class="mdi mdi-delete"></span></button>
       </div>
       <div class="panel-body" >
+          
         <span *ngIf="allEvents[key].price[0]['value']!='Not Specified'">
           <b>Price: </b>₹ {{Math.round(allEvents[key].price[0]["value"])}}</span>
        <b>Date: </b> {{allEvents[key].upcoming_occurrences[0]["date"].split(':')[0] | amParse:'YYYY-MM-DD' | amDateFormat:'LL'}}<br>
@@ -21,12 +24,13 @@
      
     </div>
     </div>
-    <br><h2>FB EVENTS</h2>
+    <br><h2>FB EVENTS</h2><button class="btn btn-success" (click)="purge('fb')">Purge Fb Events</button><br><br>
     <div *ngFor="let key of objectKeys(allEvents)" class="row-fluid">
       <!-- <div *ngFor="let occurrence of objectKeys(allEvents[key].upcoming_occurrences)"> -->
     <div class="panel panel-default" *ngIf="allEvents[key]['mySource']=='fb'">
         <div class="panel-heading" >
-            {{allEvents[key]['myDisplayTitle']}}
+            {{allEvents[key]['myDisplayTitle']}} 
+            <button class="btn btn-danger pull-right" (click)="purgeEvent(key)"><span class="mdi mdi-delete"></span></button>
         </div>
         <div class="panel-body" >
           <span *ngIf="allEvents[key].price[0]['value']!='Not Specified'">
@@ -44,11 +48,12 @@
       </div>
       <!-- </div> -->
       </div>
-      <br><h2>NODDYSAPP</h2>
+      <br><h2>NODDYSAPP</h2><button class="btn btn-warning" (click)="purge('noddysApp')">Purge Noddys Events</button><br><br>
       <div *ngFor="let key of objectKeys(allEvents)" class="row-fluid">
       <div class="panel panel-default" *ngIf="allEvents[key]['mySource']=='noddysApp'">
           <div class="panel-heading" >
               {{allEvents[key].myDisplayTitle}}
+              <button class="btn btn-danger pull-right" (click)="purgeEvent(key)"><span class="mdi mdi-delete"></span></button>
           </div>
           <div class="panel-body" >
             <span *ngIf="allEvents[key].price[0]['value']!='Not Specified'">

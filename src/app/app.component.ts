@@ -22,5 +22,14 @@ export class AppComponent {
   });
   
   }
+  purgeAll(){
+    // this.fs.removeAll();
+  }
   
+  purge(originName){
+    this.fs.removeEventByOrigin(originName);
+  }
+  purgeEvent(id){
+    this.fs.removeEventById(id);
+  }
 }
