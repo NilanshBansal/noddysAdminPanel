@@ -11,6 +11,7 @@ import { AddEventComponent } from '../components/add-event/add-event.component';
 import { Routes, RouterModule } from '@angular/router';
 import { ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { HomeComponent } from '../components/home/home.component';
+import { UpdateEventComponent } from '../components/update-event/update-event.component';
 export const firebaseConfig = {
   
   
@@ -25,6 +26,7 @@ export const firebaseConfig = {
 const appRoutes:Routes=[
   {path:'',component:HomeComponent},
   {path:'addevent',component:AddEventComponent},
+  {path:'updateEvent',component:UpdateEventComponent},
 
 ]
 
@@ -33,6 +35,7 @@ const appRoutes:Routes=[
     AppComponent,
     AddEventComponent,
     HomeComponent,
+    UpdateEventComponent,
   ],
   imports: [
     BrowserModule,

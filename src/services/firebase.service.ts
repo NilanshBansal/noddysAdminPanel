@@ -84,5 +84,9 @@ export class FirebaseService {
     });
     
   }
+  findEvent(eventid){
+    return this.db.object('/events/' + eventid);
+  
+  }
 
 }
