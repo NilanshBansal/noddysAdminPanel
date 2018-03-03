@@ -4,9 +4,13 @@ import { AngularFireModule } from 'angularfire2';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { MomentModule } from 'angular2-moment';
-
+import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { FirebaseService } from '../services/firebase.service';
+import { AddEventComponent } from '../components/add-event/add-event.component';
+import { Routes, RouterModule } from '@angular/router';
+import { ReactiveFormsModule, FormsModule } from '@angular/forms';
+import { HomeComponent } from '../components/home/home.component';
 export const firebaseConfig = {
   
   
@@ -18,10 +22,17 @@ export const firebaseConfig = {
   messagingSenderId: "155131590327"
   
 };
+const appRoutes:Routes=[
+  {path:'',component:HomeComponent},
+  {path:'addevent',component:AddEventComponent},
+
+]
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    AddEventComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
@@ -29,6 +40,10 @@ export const firebaseConfig = {
     AngularFireModule.initializeApp(firebaseConfig),
     AngularFireDatabaseModule,
     AngularFirestoreModule,
+    RouterModule.forRoot(appRoutes, { useHash: true }),
+    FormsModule,
+    ReactiveFormsModule,
+    HttpModule,
   ],
   providers: [FirebaseService],
   bootstrap: [AppComponent]
