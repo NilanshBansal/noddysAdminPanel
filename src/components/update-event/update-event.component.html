@@ -2,7 +2,7 @@
     <div class="container">
   
       <div class="navbar-header">
-        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collap">
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
@@ -18,12 +18,12 @@
   
   
   
-      <div class="collapse navbar-collapse">
+      <div class="collapse navbar-collap">
         <br>
         <br>
         <br>
         <ul class="nav navbar-nav navbar-right visible-xs">
-          <li class="active">
+          <li >
             <a [routerLink]="['/']">Home</a>
           </li>
         </ul>
@@ -52,19 +52,10 @@
             <div class="panel-body">
               <div class="form-group">
                 <div class="row">
-                  <div class="col-sm-12">
-                    <label>Title </label>
-                    <input type="text" class="form-control " required formControlName="title" name="title">
-                    <div *ngIf="updateForm.controls.title.invalid && (updateForm.controls.title.dirty || updateForm.controls.title.touched)" class="alert alert-danger">
-                      <div *ngIf="updateForm.controls.title.errors.required">
-                        Title is required.
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-sm-12">
+                  <!-- <div class="col-sm-12">
                     <br />
                     <label>Description </label>
-                    <textarea class="form-control col-sm-8 expand" rows="6" style="width: 99%" required formControlName="description" name="description"></textarea>
+                    <input type="text" class="form-control  "  required formControlName="description" name="description">
                     <div *ngIf="updateForm.controls.description.invalid && (updateForm.controls.description.dirty || updateForm.controls.description.touched)"
                       class="alert alert-danger">
                       <div *ngIf="updateForm.controls.description.errors.required">
@@ -72,6 +63,39 @@
                       </div>
                     </div>
                   </div>
+
+                  <div class="col-sm-12">
+                    <br />
+                    <label>Title </label>
+                    <input type="text" class="form-control  "  required formControlName="title" name="title">
+                    <div *ngIf="updateForm.controls.title.invalid && (updateForm.controls.title.dirty || updateForm.controls.title.touched)"
+                      class="alert alert-danger">
+                      <div *ngIf="updateForm.controls.title.errors.required">
+                        Title is required.
+                      </div>
+                    </div>
+                  </div> -->
+
+                  <div class="col-sm-12">
+                      <label>Title </label>
+                      <input type="text" class="form-control "  formControlName="title" name="title" id="titleInput" value={{eventTitle}} #titleInput>
+                      <div *ngIf="updateForm.controls.title.invalid && (updateForm.controls.title.dirty || updateForm.controls.title.touched)" class="alert alert-danger">
+                        <div *ngIf="updateForm.controls.title.errors.required">
+                          Title is required.
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-sm-12">
+                      <br />
+                      <label>Description </label>
+                      <textarea class="form-control col-sm-8 expand" rows="6" style="width: 99%" required formControlName="description" name="description"></textarea>
+                      <div *ngIf="updateForm.controls.description.invalid && (updateForm.controls.description.dirty || updateForm.controls.description.touched)"
+                        class="alert alert-danger">
+                        <div *ngIf="updateForm.controls.description.errors.required">
+                          Description is required.
+                        </div>
+                      </div>
+                    </div>
                 </div>
               </div>
             </div>
@@ -249,7 +273,9 @@
             </div>
           </div>
           <div>
-            <input type="submit" class="btn btn-primary" value="Submit" [disabled]="updateForm.invalid ">
+            <!-- <input type="submit" class="btn btn-primary" value="Submit" [disabled]="updateForm.invalid "> -->
+            <input type="submit" class="btn btn-primary" value="Submit">
+            
             <br>
             <p class=" hidden-xs">
               <small>* event will be published
