@@ -20,6 +20,7 @@ export class UpdateEventComponent implements OnInit {
   city = "Delhi NCR";
   eventTitle="title";
   updateForm:FormGroup;
+  eventId;
   constructor(private route:ActivatedRoute,
               private fs: FirebaseService,
               public fb: FormBuilder,
@@ -33,11 +34,12 @@ export class UpdateEventComponent implements OnInit {
       this.fs.findObjects("locations").valueChanges().subscribe(data => {
         console.log("locations: ",data);
         this.locations = data;
-        this.fs.findEvent(this.route.snapshot.queryParamMap.get('id')).valueChanges().subscribe(eventObj=>{
+        this.eventId=this.route.snapshot.queryParamMap.get('id');
+        this.fs.findEvent(this.eventId).valueChanges().subscribe(eventObj=>{
           console.log(this.locations);
           console.log(this.categories);
           this.event=eventObj;
-          console.log(eventObj);
+          console.log(this.event);
           this.eventTitle=this.event.myDisplayTitle;
           // this.startDate=new Date(this.event['upcoming_occurrences']);
           this.updateForm = this.fb.group({
@@ -161,7 +163,7 @@ export class UpdateEventComponent implements OnInit {
         "lon":"",
         "city":city
       },
-      "mySource":"noddysApp",
+      "mySource":this.event.mySource,
       "upcoming_occurrences":{
         0:{
           "date":startDate,
@@ -211,6 +213,12 @@ export class UpdateEventComponent implements OnInit {
     };
 
     console.log(obj);
+    let that=this;
+    async function editEvent(){
+      await that.fs.removeEventById(that.eventId);
+      that.fs.addObject("events",obj);
+    }
+    editEvent();
     //this.fs.addObject("events",obj);
     // let that=this;
     // setTimeout(function(){

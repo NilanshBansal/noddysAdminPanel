@@ -275,14 +275,17 @@
           <div>
             <!-- <input type="submit" class="btn btn-primary" value="Submit" [disabled]="updateForm.invalid "> -->
             <input type="submit" class="btn btn-primary" value="Submit">
-            
-            <br>
-            <p class=" hidden-xs">
+            <!-- <br> -->
+
+            <!-- <p class=" hidden-xs">
               <small>* event will be published
                 <br /> once our team approves it </small>
-            </p>
+            </p> -->
+            <a class="btn btn-warning" [routerLink]="['/']">Cancel</a> 
           </div>
         </form>
+        
+        
       </div>
     </div>
   </div>

@@ -38,6 +38,7 @@ export class FirebaseService {
   }
 
   removeEventById(id){
+    alert("called remove object");
     this.db.object('/events/' + id).remove();
   }
   findObjects(stringvar) {
@@ -45,6 +46,7 @@ export class FirebaseService {
   }
 
   addObject(stringvar,element){
+    alert("called add object");
     const itemRef = this.db.object("/" + stringvar);
     var obj={};
     itemRef.snapshotChanges().subscribe(snapshot => {
@@ -68,10 +70,7 @@ export class FirebaseService {
         }
         // element["myCategory"]=element["cats"][0];
         // element["myCategoryCaps"]="";
-        element["myContactDetails"]={
-          "telephoneNo":"",
-          "contactPerson":""
-        };
+        
         // element["myAge"]={
         //  "lower":0,
         //  "upper":18
