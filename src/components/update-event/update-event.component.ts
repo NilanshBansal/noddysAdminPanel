@@ -46,31 +46,31 @@ export class UpdateEventComponent implements OnInit {
             title: [this.eventTitle, Validators.required],
             description: [this.event.description, Validators.required],
             // cat:this.fb.group({
-              category: [/* this.event.myCategory */'Choose a category'],
+              category: [this.event.myCategory],
               anyOtherCategory: [''],
             // },{validator:this.catValidator}),
             
             age:this.fb.group({
-              startAge: ['',Validators.required],
-              endAge: ['',Validators.required],
+              startAge: [this.event.myAge.lower,Validators.required],
+              endAge: [this.event.myAge.upper,Validators.required],
             },{validator:this.ageValidator}),
             
             startDate:[this.nowDate,Validators.required],
             endDate:[this.nowDate,Validators.required],
-            startTime:[this.nowTime,Validators.required],
-            endTime:[this.nowTime,Validators.required],
-            city:['Delhi NCR'],
+            startTime:[this.event.upcoming_occurrences[0].start_time,Validators.required],
+            endTime:[this.event.upcoming_occurrences[0].end_time,Validators.required],
+            city:[this.event.myCity],
             
             // placeGroup:this.fb.group({
-              place:['Choose a place'],
+              place:[this.event.myLocation],
               anyOtherPlace:[''],
             // },{validator:this.placeValidator}),
             
             address:[this.event.venue.address,Validators.required],
-            pinCode:[''],
-            price:['',Validators.required],
-            email:[''],
-            phone:['']
+            pinCode:[this.event.myPincode],
+            price:[this.event.price[0].value,Validators.required],
+            email:[this.event.myContactDetails.email],
+            phone:[this.event.myContactDetails.telephoneNo]
       
             
           });
@@ -216,7 +216,7 @@ export class UpdateEventComponent implements OnInit {
     let that=this;
     async function editEvent(){
       await that.fs.removeEventById(that.eventId);
-      that.fs.addObject("events",obj);
+      that.fs.addObject("events",obj        );
     }
     editEvent();
     //this.fs.addObject("events",obj);
