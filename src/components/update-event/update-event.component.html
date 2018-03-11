@@ -46,7 +46,9 @@
   <div class="container">
     <div class="row">
       <div class="col-sm-9">
-        <form class="form-vertical" [formGroup]="updateForm" (submit)="submitEvent()" novalidate>
+        <!-- <form class="form-vertical" [formGroup]="updateForm" (submit)="submitEvent()" novalidate> -->
+        <form class="form-vertical" [formGroup]="updateForm" novalidate>
+            
           <div class="panel panel-default">
             <div class="panel-heading">Event details</div>
             <div class="panel-body">
@@ -108,7 +110,7 @@
                 <div class="row">
                   <div class="col-sm-6">
                     <label>Category</label>
-                    <select id="category" class="form-control " formControlName="category" name="category">
+                    <select id="category" (change)="categoryChanged($event.target.value)" class="form-control " formControlName="category" name="category">
                       <option value="">Choose a category</option>
                       <option *ngFor="let category of categories">{{category}}</option>
                     </select>
@@ -157,11 +159,11 @@
                 <div class="row">
                   <div class="col-sm-6">
                     <label>Start Date</label>
-                    <input type="date" value={{nowDate}} class="form-control " formControlName="startDate" name="startDate">
+                    <input type="date"  class="form-control " formControlName="startDate" name="startDate">
                   </div>
                   <div class="col-sm-6">
                     <label>End Date</label>
-                    <input type="date" value={{nowDate}} class="form-control " formControlName="endDate" name="endDate">
+                    <input type="date"  class="form-control " formControlName="endDate" name="endDate">
                   </div>
                   <div class="col-sm-6">
                     <br />
@@ -178,7 +180,7 @@
                     <label>Event Venue</label>
                     <br>
                     <label>City</label>
-                    <select id="cityDropdown" (change)="cityChanged($event.target.value)" class="form-control " formControlName="city" name="city">
+                    <select id="cityDropdown" (change)="cityChanged($event.target.value)" class="form-control " formControlName="city" name="city" >
                       <option value="">Choose a city</option>
                       <option *ngFor="let location of objectKeys(locations)">{{location}}</option>
                     </select>
@@ -274,7 +276,7 @@
           </div>
           <div>
             <!-- <input type="submit" class="btn btn-primary" value="Submit" [disabled]="updateForm.invalid "> -->
-            <input type="submit" class="btn btn-primary" value="Submit">
+            <input type="submit" class="btn btn-primary" value="Submit" (click)="submitEvent()">
             <!-- <br> -->
 
             <!-- <p class=" hidden-xs">
@@ -282,6 +284,8 @@
                 <br /> once our team approves it </small>
             </p> -->
             <a class="btn btn-warning" [routerLink]="['/']">Cancel</a> 
+            <!-- <a class="btn btn-warning" (click)="check()">Cancel</a>  -->
+            
           </div>
         </form>
         

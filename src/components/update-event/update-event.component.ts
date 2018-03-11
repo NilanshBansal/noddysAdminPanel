@@ -18,6 +18,7 @@ export class UpdateEventComponent implements OnInit {
   nowDate=this.curDate.getFullYear() + "-" +  ("0" + this.curMonth).slice(-2) + "-" + ("0" + this.curDate.getDate()).slice(-2);
   nowTime=new Date().toLocaleTimeString();
   city = "Delhi NCR";
+  category="kids";
   eventTitle="title";
   updateForm:FormGroup;
   eventId;
@@ -46,7 +47,7 @@ export class UpdateEventComponent implements OnInit {
             title: [this.eventTitle, Validators.required],
             description: [this.event.description, Validators.required],
             // cat:this.fb.group({
-              category: [this.event.myCategory],
+              category: [],
               anyOtherCategory: [''],
             // },{validator:this.catValidator}),
             
@@ -55,11 +56,11 @@ export class UpdateEventComponent implements OnInit {
               endAge: [this.event.myAge.upper,Validators.required],
             },{validator:this.ageValidator}),
             
-            startDate:[this.nowDate,Validators.required],
-            endDate:[this.nowDate,Validators.required],
+            startDate:[this.event.upcoming_occurrences[0].date.split(':')[0],Validators.required],
+            endDate:[this.event.upcoming_occurrences[0].end_date.split(':')[0],Validators.required],
             startTime:[this.event.upcoming_occurrences[0].start_time,Validators.required],
             endTime:[this.event.upcoming_occurrences[0].end_time,Validators.required],
-            city:[this.event.myCity],
+            city:[/* this.event.city */] ,
             
             // placeGroup:this.fb.group({
               place:[this.event.myLocation],
@@ -74,6 +75,7 @@ export class UpdateEventComponent implements OnInit {
       
             
           });
+
         });  
 
       });
@@ -82,9 +84,14 @@ export class UpdateEventComponent implements OnInit {
 
       
   }
-  ngAfterViewChecked(){
+  ngAfterViewInit(){
+    console.log("called");
+    this.city=this.event.city;
     var cityDropdown=(<HTMLInputElement>document.getElementById("cityDropdown"));
-    cityDropdown.value=this.city;
+    cityDropdown.value=this.event.city;
+    var categoryDropdown=(<HTMLInputElement>document.getElementById("category"));
+    categoryDropdown.value=this.event.myCategory;
+    this.category=this.event.myCategory;
     //console.log("dekh bhai dekh");
   
    
@@ -95,10 +102,15 @@ export class UpdateEventComponent implements OnInit {
     let that=this;
 
   }
+  categoryChanged(categoryInput){
+    this.category=categoryInput;
+
+  }
   submitEvent(){
     var title=this.updateForm.value["title"];
     var description=this.updateForm.value["description"];
-    var category=this.updateForm.value["category"];
+    // var category=this.updateForm.value["category"]
+  
     var anyOtherCategory=this.updateForm.value["anyOtherCategory"];
     var startAge=this.updateForm.get('age.startAge').value;
     var endAge=this.updateForm.get('age.endAge').value;
@@ -106,7 +118,7 @@ export class UpdateEventComponent implements OnInit {
     var endDate=this.updateForm.value["endDate"];
     var startTime=this.updateForm.value["startTime"];
     var endTime=this.updateForm.value["endTime"];
-    var city=this.updateForm.value["city"];
+    // var city=this.updateForm.value["city"];
     var place=this.updateForm.value["place"];
     var anyOtherPlace=this.updateForm.value["anyOtherPlace"];
     var address=this.updateForm.value["address"];
@@ -118,25 +130,28 @@ export class UpdateEventComponent implements OnInit {
     var titleWithoutFormGroup=(<HTMLInputElement>(document.getElementById('titleInput'))).value;
   
     console.log("see",title);
-    if(anyOtherCategory==""){
+    /* if(anyOtherCategory==""){
       anyOtherCategory=null;
     }
-    if(category=="Choose a category"){
-      category=null;
+    if(this.category=="Choose a category"){
+      this.category=null;
     }
-    if(category==null){
+    if(this.category==null){
       myCategory=anyOtherCategory;
     }
     else{
-      myCategory=category;
+      myCategory=this.category;
+    } */
+    if(this.category=="Choose a category"){
+      this.category="";
     }
     var obj={
       // "title":title,
       "title":titleWithoutFormGroup,
       "description":description,
-      "category":category,
+      "category":this.category,
       "anyOtherCategory":anyOtherCategory,
-      "myCategory":myCategory,
+      "myCategory":this.category,
       "startAge":startAge,
       "endAge":endAge,
       "myAge":{
@@ -147,7 +162,7 @@ export class UpdateEventComponent implements OnInit {
       // "endDate":endDate,
       // "startTime":startTime,
       // "endTime":endTime,
-      "city":city,
+      "city":this.city,
       "place":place,
       "anyOtherPlace":anyOtherPlace,
       "myPincode":pinCode,
@@ -161,7 +176,7 @@ export class UpdateEventComponent implements OnInit {
         "address":address,
         "lat":"",
         "lon":"",
-        "city":city
+        "city":this.city
       },
       "mySource":this.event.mySource,
       "upcoming_occurrences":{
@@ -216,7 +231,7 @@ export class UpdateEventComponent implements OnInit {
     let that=this;
     async function editEvent(){
       await that.fs.removeEventById(that.eventId);
-      that.fs.addObject("events",obj        );
+      that.fs.addObject("events",obj);
     }
     editEvent();
     //this.fs.addObject("events",obj);

@@ -16,11 +16,14 @@ export class HomeComponent {
   constructor(private db:AngularFireDatabase,
               private fs:FirebaseService){
   this.Math=Math;     
-  this.fs.returnItems("events").valueChanges().subscribe(data=>{
-    this.allEvents=data;
-    console.log(data);
-  });
   
+  
+  }
+  ngOnInit(){
+    this.fs.returnItems("events").valueChanges().subscribe(data=>{
+      this.allEvents=data || [];
+      console.log(data);
+    });
   }
   purgeAll(){
     // this.fs.removeAll();
@@ -30,6 +33,7 @@ export class HomeComponent {
     this.fs.removeEventByOrigin(originName);
   }
   purgeEvent(id){
+    console.log(id);
     this.fs.removeEventById(id);
   }
 }

@@ -38,7 +38,7 @@ export class FirebaseService {
   }
 
   removeEventById(id){
-    alert("called remove object");
+    console.log("called remove object");
     this.db.object('/events/' + id).remove();
   }
   findObjects(stringvar) {
@@ -46,15 +46,16 @@ export class FirebaseService {
   }
 
   addObject(stringvar,element){
-    alert("called add object");
+    console.log("called add object");
+    console.log(element);
     const itemRef = this.db.object("/" + stringvar);
     var obj={};
     itemRef.snapshotChanges().subscribe(snapshot => {
-
+      obj={};
       element["title"] = element["title"].replace(/[\.,#,$,/,\[,\]]/g, '');
-      //console.log(element["title"] );
+      console.log(element["title"] );
       if (snapshot.payload.val() == null || (snapshot.payload.val() != null && snapshot.payload.val()[element["title"]] == undefined)) {
-        //console.log("dekhoji");
+        console.log("dekhoji");
         element["myAdminApproved"] = true;
         element["myDisplayTitle"]=element["title"];
         element["myLocation"]="";
@@ -76,8 +77,9 @@ export class FirebaseService {
         //  "upper":18
         // };
         obj[element["myDisplayTitle"]] = element;
-        //console.log(element["myDisplayTitle"]);
+        console.log(element["myDisplayTitle"]);
       }
+      console.log("hello");
       console.log(obj);
       itemRef.update(obj);
     });
