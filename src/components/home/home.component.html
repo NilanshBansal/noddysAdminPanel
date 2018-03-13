@@ -26,6 +26,7 @@
           <b>Locality: </b>{{allEvents[key].myLocation}}
           
         </span>
+        <br><div *ngIf="allEvents[key].img_url"><b>Image Url: </b><a target="_blank" href={{allEvents[key].img_url}} >{{ allEvents[key].img_url }}</a></div>
         <!-- <a class="btn btn-primary" [routerLink]="['updateEvent']" [queryParams]="{ id: allEvents[key].title }">Update</a> -->
         </div>
        
@@ -50,10 +51,12 @@
             <b>Starts: </b>{{(allEvents[key].upcoming_occurrences[0]["start_time"]| amParse:'hh:mm:ss' | amCalendar).split("at")[1]}}
             <b>Ends: </b>{{(allEvents[key].upcoming_occurrences[0]["end_time"]| amParse:'hh:mm:ss' | amCalendar).split("at")[1]}}
             <b>Venue: </b><span *ngIf="allEvents[key].venue['name']!=''">{{allEvents[key].venue["name"] + ", " }}</span>{{ allEvents[key].venue["city"]}}
+            
             <span *ngIf="allEvents[key].myLocation!=''">
              <b>Locality: </b>{{allEvents[key].myLocation}}
              
            </span>
+           <br><div *ngIf="allEvents[key].img_url"><b>Image Url: </b><a target="_blank" href={{allEvents[key].img_url}} >{{ allEvents[key].img_url }}</a></div>
           </div>
          
         </div>
@@ -81,6 +84,7 @@
                <b>Locality: </b>{{allEvents[key].myLocation}}
                
              </span>
+             <br><div *ngIf="allEvents[key].img_url"><b>Image Url: </b><a target="_blank" href={{allEvents[key].img_url}} >{{ allEvents[key].img_url }}</a></div>
             </div>
            
           </div>

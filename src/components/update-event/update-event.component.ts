@@ -46,6 +46,7 @@ export class UpdateEventComponent implements OnInit {
           this.updateForm = this.fb.group({
             title: [this.eventTitle, Validators.required],
             description: [this.event.description, Validators.required],
+            imageUrl:[this.event.img_url],
             // cat:this.fb.group({
               category: [],
               anyOtherCategory: [''],
@@ -126,6 +127,7 @@ export class UpdateEventComponent implements OnInit {
     var price=this.updateForm.value["price"];
     var email=this.updateForm.value["email"];
     var phone=this.updateForm.value["phone"];
+    var imageUrl=this.updateForm.value["imageUrl"];
     var myCategory;
     var titleWithoutFormGroup=(<HTMLInputElement>(document.getElementById('titleInput'))).value;
   
@@ -148,6 +150,7 @@ export class UpdateEventComponent implements OnInit {
     var obj={
       // "title":title,
       "myEdited":true,
+      "img_url":imageUrl,
       "title":titleWithoutFormGroup,
       "description":description,
       "category":this.category,
@@ -168,7 +171,6 @@ export class UpdateEventComponent implements OnInit {
       "anyOtherPlace":anyOtherPlace,
       "myPincode":pinCode,
       // "price":price,
-      "img_url":'',
       "url":'',
       "booking_url":'',
       "booking_enquiry_url":'',
@@ -235,14 +237,14 @@ export class UpdateEventComponent implements OnInit {
       that.fs.addObject("events",obj);
     }
     editEvent();
-
+   this.router.navigate(['/']);
+   
     //this.fs.addObject("events",obj);
     // let that=this;
     // setTimeout(function(){
     //   that.fs.addObject("noddysEvents",obj);
     // },2000);
     // alert("Event added");
-     this.router.navigate(['/']);
     
     
   }
