@@ -2,7 +2,7 @@
     <!-- <button class="btn btn-danger" (click)="purgeAll()">Purge All</button> -->
     <br><br>
     <a [routerLink]="['/addevent']" class="btn btn-lg btn-primary pull-right">Add Event</a>
-      <br><h2>EVENTSHIGH</h2>
+      <br><h2>EVENTSHIGH <span class="badge" style="font-size: 17px;background-color: blue;">{{ countEventsHigh }}</span></h2>
       <button class="btn btn-success" (click)="purge('eventsHigh')">Purge Eventshigh Events</button><br><br>
     <div *ngFor="let key of objectKeys(allEvents)" class="row-fluid">
       <div class="panel panel-default" *ngIf="allEvents[key]['mySource']=='eventsHigh'">
@@ -30,7 +30,7 @@
        
       </div>
       </div>
-      <br><h2>FB EVENTS</h2><button class="btn btn-primary" (click)="purge('fb')">Purge Fb Events</button><br><br>
+      <br><h2>FB EVENTS <span class="badge" style="font-size: 17px;background-color: blue;">{{countFb}}</span></h2><button class="btn btn-primary" (click)="purge('fb')">Purge Fb Events</button><br><br>
       <div *ngFor="let key of objectKeys(allEvents)" class="row-fluid">
         <!-- <div *ngFor="let occurrence of objectKeys(allEvents[key].upcoming_occurrences)"> -->
       <div class="panel panel-default" *ngIf="allEvents[key]['mySource']=='fb'">
@@ -57,7 +57,7 @@
         </div>
         <!-- </div> -->
         </div>
-        <br><h2>NODDYSAPP</h2><button class="btn btn-warning" (click)="purge('noddysApp')">Purge Noddys Events</button><br><br>
+        <br><h2>NODDYSAPP <span class="badge" style="font-size: 17px;background-color: blue;">{{countNoddy}}</span></h2><button class="btn btn-warning" (click)="purge('noddysApp')">Purge Noddys Events</button><br><br>
         <div *ngFor="let key of objectKeys(allEvents)" class="row-fluid">
         <div class="panel panel-default" *ngIf="allEvents[key]['mySource']=='noddysApp'">
             <div class="panel-heading" >
