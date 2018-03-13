@@ -7,7 +7,8 @@
     <div *ngFor="let key of objectKeys(allEvents)" class="row-fluid">
       <div class="panel panel-default" *ngIf="allEvents[key]['mySource']=='eventsHigh'">
         <div class="panel-heading" >
-               {{allEvents[key].myDisplayTitle}}   
+               {{allEvents[key].myDisplayTitle}}  
+               <div class="label label-primary" *ngIf="allEvents[key]['myEdited']">Edited</div> 
                <div class="btn-group pull-right" style="margin:1px;">
                   <a class="btn btn-info " style="font-size:smaller;"  [routerLink]="['updateEvent']" [queryParams]="{ id: key }"><span class="glyphicon glyphicon-edit"></span> </a>
                 <button class="btn btn-danger " style="font-size:smaller;" (click)="purgeEvent(key)"><span class="glyphicon glyphicon-trash"></span></button>
@@ -36,6 +37,7 @@
       <div class="panel panel-default" *ngIf="allEvents[key]['mySource']=='fb'">
           <div class="panel-heading" >
               {{allEvents[key]['myDisplayTitle']}} 
+              <div class="label label-primary" *ngIf="allEvents[key]['myEdited']">Edited</div>
               <div class="btn-group pull-right" style="margin:1px;">
                   <a class="btn btn-info " style="font-size:smaller;"  [routerLink]="['updateEvent']" [queryParams]="{ id: key }"><span class="glyphicon glyphicon-edit"></span> </a>
                 <button class="btn btn-danger " style="font-size:smaller;" (click)="purgeEvent(key)"><span class="glyphicon glyphicon-trash"></span></button>
@@ -62,6 +64,7 @@
         <div class="panel panel-default" *ngIf="allEvents[key]['mySource']=='noddysApp'">
             <div class="panel-heading" >
                 {{allEvents[key].myDisplayTitle}}
+                <div class="label label-primary" *ngIf="allEvents[key]['myEdited']">Edited</div>
                 <div class="btn-group pull-right" style="margin:1px;">
                     <a class="btn btn-info " style="font-size:smaller;"  [routerLink]="['updateEvent']" [queryParams]="{ id: key }"><span class="glyphicon glyphicon-edit"></span> </a>
                   <button class="btn btn-danger " style="font-size:smaller;" (click)="purgeEvent(key)"><span class="glyphicon glyphicon-trash"></span></button>

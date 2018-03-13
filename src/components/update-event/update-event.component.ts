@@ -147,6 +147,7 @@ export class UpdateEventComponent implements OnInit {
     }
     var obj={
       // "title":title,
+      "myEdited":true,
       "title":titleWithoutFormGroup,
       "description":description,
       "category":this.category,
@@ -234,13 +235,14 @@ export class UpdateEventComponent implements OnInit {
       that.fs.addObject("events",obj);
     }
     editEvent();
+
     //this.fs.addObject("events",obj);
     // let that=this;
     // setTimeout(function(){
     //   that.fs.addObject("noddysEvents",obj);
     // },2000);
     // alert("Event added");
-    // this.router.navigate(['/']);
+     this.router.navigate(['/']);
     
     
   }
