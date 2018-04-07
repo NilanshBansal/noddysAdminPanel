@@ -176,6 +176,7 @@ export class AddEventComponent implements OnInit {
       "title":title,
       "description":description,
       "category":category,
+      "myAdminApproved":true,
       "anyOtherCategory":anyOtherCategory,
       "myCategory":myCategory,
       "startAge":startAge,

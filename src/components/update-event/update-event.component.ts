@@ -47,6 +47,7 @@ export class UpdateEventComponent implements OnInit {
             title: [this.eventTitle, Validators.required],
             description: [this.event.description, Validators.required],
             imageUrl:[this.event.img_url],
+            myAdminApproved:[this.event.myAdminApproved],
             // cat:this.fb.group({
               category: [],
               anyOtherCategory: [''],
@@ -128,6 +129,8 @@ export class UpdateEventComponent implements OnInit {
     var email=this.updateForm.value["email"];
     var phone=this.updateForm.value["phone"];
     var imageUrl=this.updateForm.value["imageUrl"];
+    console.log("see see see",this.updateForm.value["myAdminApproved"])
+    var myAdminApproved=(this.updateForm.value["myAdminApproved"]=='true');
     var myCategory;
     var titleWithoutFormGroup=(<HTMLInputElement>(document.getElementById('titleInput'))).value;
   
@@ -151,6 +154,7 @@ export class UpdateEventComponent implements OnInit {
       // "title":title,
       "myEdited":true,
       "img_url":imageUrl,
+      "myAdminApproved":myAdminApproved,
       "title":titleWithoutFormGroup,
       "description":description,
       "category":this.category,
@@ -230,7 +234,7 @@ export class UpdateEventComponent implements OnInit {
       }
     };
 
-    console.log(obj);
+    console.log("see obj: ",obj);
     let that=this;
     async function editEvent(){
       await that.fs.removeEventById(that.eventId);

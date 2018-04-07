@@ -56,7 +56,6 @@ export class FirebaseService {
       console.log(element["title"] );
       if (snapshot.payload.val() == null || (snapshot.payload.val() != null && snapshot.payload.val()[element["title"]] == undefined)) {
         console.log("dekhoji");
-        element["myAdminApproved"] = true;
         element["myDisplayTitle"]=element["title"];
         element["myLocation"]="";
         // element["myPincode"]="";

@@ -15,6 +15,8 @@
         <div class="panel-heading" >
                {{allEvents[key].myDisplayTitle}}  
                <div class="label label-primary" *ngIf="allEvents[key]['myEdited']">Edited</div> 
+               <div class="label label-success" *ngIf="allEvents[key]['myAdminApproved']">Admin Approved:True</div>                
+               <div class="label label-danger" *ngIf="!allEvents[key]['myAdminApproved']">Admin Approved:False</div>                
                <div class="btn-group pull-right" style="margin:1px;">
                   <a class="btn btn-info " style="font-size:smaller;"  [routerLink]="['updateEvent']" [queryParams]="{ id: key }"><span class="glyphicon glyphicon-edit"></span> </a>
                 <button class="btn btn-danger " style="font-size:smaller;" (click)="purgeEvent(key)"><span class="glyphicon glyphicon-trash"></span></button>
@@ -78,7 +80,7 @@
         <br>
         <h2 id="noddysEvents">NODDYSAPP <span class="badge" style="font-size: 17px;background-color: blue;">{{countNoddy}}</span>
           <span><a href="#eventsHighEvents" class="btn btn-default">Go to EventsHigh</a>
-          <a href="#fbEvents" class="btn btn-default">Go to FB</a></span>
+          <a href="#fbEvents" class="btn btn-default">Go to FB events</a></span>
         </h2><button class="btn btn-warning" (click)="purge('noddysApp')">Purge Noddys Events</button><br><br>
         <div *ngFor="let key of objectKeys(allEvents)" class="row-fluid">
         <div class="panel panel-default" *ngIf="allEvents[key]['mySource']=='noddysApp'">
