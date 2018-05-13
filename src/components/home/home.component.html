@@ -22,10 +22,12 @@
                 <button class="btn btn-danger " style="font-size:smaller;" (click)="purgeEvent(key)"><span class="glyphicon glyphicon-trash"></span></button>
                </div>
         </div>
-        <div class="panel-body" >
-            
+<div class="panel-body" >
+        
+        <div *ngIf="allEvents[key].price">
           <span *ngIf="allEvents[key].price[0]['value']!='Not Specified'">
             <b>Price: </b>₹ {{Math.round(allEvents[key].price[0]["value"])}}</span>
+            </div>
          <b>Date: </b> {{allEvents[key].upcoming_occurrences[0]["date"].split(':')[0] | amParse:'YYYY-MM-DD' | amDateFormat:'LL'}}<br>
          <b>Starts: </b>{{(allEvents[key].upcoming_occurrences[0]["start_time"]| amParse:'hh:mm:ss' | amCalendar).split("at")[1]}}
          <b>Ends: </b>{{(allEvents[key].upcoming_occurrences[0]["end_time"]| amParse:'hh:mm:ss' | amCalendar).split("at")[1]}}
@@ -37,7 +39,7 @@
         <br><div *ngIf="allEvents[key].img_url"><b>Image Url: </b><a target="_blank" href={{allEvents[key].img_url}} >{{ allEvents[key].img_url }}</a></div>
         <!-- <a class="btn btn-primary" [routerLink]="['updateEvent']" [queryParams]="{ id: allEvents[key].title }">Update</a> -->
         </div>
-       
+        
       </div>
       </div>
       <br>
