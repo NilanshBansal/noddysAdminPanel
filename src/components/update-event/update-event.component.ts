@@ -48,6 +48,7 @@ export class UpdateEventComponent implements OnInit {
             description: [this.event.description, Validators.required],
             imageUrl:[this.event.img_url],
             myAdminApproved:[this.event.myAdminApproved],
+            featured:[this.event.featured],
             // cat:this.fb.group({
               category: [],
               anyOtherCategory: [''],
@@ -130,7 +131,10 @@ export class UpdateEventComponent implements OnInit {
     var phone=this.updateForm.value["phone"];
     var imageUrl=this.updateForm.value["imageUrl"];
     console.log("see see see",this.updateForm.value["myAdminApproved"])
+    console.log("see see see featured",this.updateForm.value["featured"])
+
     var myAdminApproved=(this.updateForm.value["myAdminApproved"]=='true');
+    var featured=(this.updateForm.value["featured"]=='true');
     var myCategory;
     var titleWithoutFormGroup=(<HTMLInputElement>(document.getElementById('titleInput'))).value;
   
@@ -155,6 +159,7 @@ export class UpdateEventComponent implements OnInit {
       "myEdited":true,
       "img_url":imageUrl,
       "myAdminApproved":myAdminApproved,
+      "featured":featured,
       "title":titleWithoutFormGroup,
       "description":description,
       "category":this.category,
